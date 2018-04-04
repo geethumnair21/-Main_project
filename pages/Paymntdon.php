@@ -1,12 +1,7 @@
 <?php
 session_start();
+             $i=$_SESSION["amount"];  
 
-						 
-							$tname=$_SESSION["tem"];
-							$tdeity=$_SESSION["diety"];
-							$pid=$_SESSION["pid"];
-							
-						
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +31,12 @@ session_start();
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
- <script>
-function checkDate() {
-   var selectedText = document.getElementById('datepicker').value;
-   var selectedDate = new Date(selectedText);
-   var now = new Date();
-   now.setDate(now.getDate()+2)
-   if (selectedDate < now) {
-    alert("You can book a date only after 2 days from todays date.");
-   }
-  
- }
- </script>
+  <script type="text/javascript">
+function conf()
+{
+var con=confirm("Your Paymen is successfully completed");
+}
+</script>
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -60,7 +49,7 @@ function checkDate() {
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../../index2.html" class="navbar-brand"><b>NALAMBALAM</b></a>
+          <a href="" class="navbar-brand"><b>NALAMBALAM</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -69,10 +58,10 @@ function checkDate() {
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="userHome.php">Home</a></li>
-            <li class="active"><a href="PoojaBooking.php">Pooja Booking<span class="sr-only">(current)</span></a></li>
+             <li><a href="userHome.php">Home</a></li>
+            <li><a href="PoojaBooking.php">Pooja Booking</a></li>
 			<li><a href="weddingbooking.php">Wedding Booking</a></li>
-			<li><a href="Donation.php">Donation</a></li>
+			<li class="active"><a href="Donation.php">Donation<span class="sr-only">(current)</span></a></li>
 			<li><a href="Feedback.php">Feedback</a></li>
           </ul>
         </div>
@@ -166,17 +155,17 @@ function checkDate() {
           <small>Example 2.0</small>
         </h1> -->
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i>Pooja Booking</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i>Donation</a></li>
 		
           <!-- <li><a href="#">Layout</a></li>
           <li class="active">Top Navigation</li> -->
         </ol>
       </section>
-         <div class="col-xs-12">
+         <div class="col-xs-9">
 		 <div class="box">
 		 <div class="box-header">
 		    <div class="nav-tabs-custom">
-					<h2 align="center">Devotee Details</h2>
+					<h2 align="center">Bank Details</h2>
 			  </div>
 			  <div class="tab-content">
               <div class="tab-pane active">
@@ -191,163 +180,65 @@ function checkDate() {
 				$_SESSION["uid"]=$uid;
 				
 			    ?>
-			     <form action="DevoteePD1.php"  method="POST" class="form-horizontal">
+			     <form action=""  method="POST" class="form-horizontal">
 				  
 				        <div class="form-group">
-		                   <label class="col-sm-3 control-label">Name</label>
+		                   <label class="col-sm-3 control-label">Cardholder Name</label>
 					    <div class="col-sm-6">
 					        <input type="text" name="txtname" class="form-control" placeholder="Enter ..." required>
 					    </div>
 					    </div>
 						
 						<div class="form-group">
-		                   <label class="col-sm-3 control-label">Star(Nakshatra)</label>
+		                   <label class="col-sm-3 control-label">credit card Number</label>
 					    <div class="col-sm-6">
-					         <select name="star" id="star" class="form-control">	
-								<option value="Select">Select</option>
-					<?php		
+					       <input type="number" name="txtnumber" class="form-control" placeholder="Enter ..." required>
 					
-						$con=mysqli_connect("localhost","geethu","geethu@21","temple");
-						
-						$sel="select star from star";
-						$det=mysqli_query($con,$sel);
-						if($det->num_rows >0){
-						$areaOptions = "";
-							while($row=$det->fetch_assoc()){			
-							
-							$areaOptions .= '<option value="' . $row['star'] . '">' . $row['star'] . '</option>';
-							
-							}
-							echo $areaOptions;
-							}	
-					?>	
 							</select>
 					    </div>
 					    </div>
 						
 						<div class="form-group">
-		                   <label class="col-sm-3 control-label">Date</label>
+		                   <label class="col-sm-3 control-label">CVV Code</label>
 					    <div class="col-sm-6">
-					        <input id="datepicker" name="date" onchange="checkDate()" required class="datepicker-input" type="date" data-date-format="yyyy-mm-dd" >
+					        
+					        <input type="number" name="txtcv" class="form-control" placeholder="Enter ..." required>
+					    
 					    </div>
 					    </div>
-						
+						<div class="form-group">
+								<label class="col-sm-3 control-label">Amount</label>
+						<div class="col-sm-6">
+						   <input type="text" name="txttot" class="form-control" readonly value="<?php echo $i; ?>">
+						</div>
+						</div>
 						
 						<div class="form-group">
 						<div class=" col-md-6" align="center">
-							<input type='submit' name="add" class='btn btn-info pull-right' value=" ADD ">
+							<input type='submit'  onClick="conf()" class='btn btn-info pull-right' value=" Pay Now ">
 								             
 						</div>
-						<div >   
-						</form>	
-						<form action="PoojaBooking.php" method="post">
-							<button class="btn btn-info" onClick="PoojaBooking.php">Add More</button>
 						</div>
-						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			
+						
 						
 						
 				 
 				 </form>
 				  
-			  </div>
-			  </div>
+			  
+			  
 		 
-		 </div>
-		 </div>
-		 </div>
 		 
-		  <div class="col-md-12">
-		  <div class="box">
-		  <div class="box-body">
-		  <div class="box-header">
-              <h3 class="box-title">Details</h3>
-            </div>
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-				 <th> </th>
-				  <th> </th>
-                  <th>Temple</th>
-                  <th>Deity</th>
-                  <th>Name</th>
-                  <th>Star</th>
-				  <th>Date</th>
-				  <th>Pooja</th>
-				  <th>Amount</th>
-				  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-			
-				<?php
-				
-								$uid=$_SESSION["uid"];
-								
-								$con=mysqli_connect("localhost","geethu","geethu@21","temple");
-								
-								$sel="SELECT tmp.tname,dt.dname,p.name,p.pid,p.uid,p.bid,p.star,p.date,pj.pname,pj.amount FROM 
-									pooja pj left outer join  temple tmp on pj.temple=tmp.tid 
-									left outer join deity dt on pj.deity=dt.did
-                                   left outer join p_booking p on pj.pid=p.pid where uid=$uid;";
-								
-									
-								$res=mysqli_query($con,$sel);
-								
-								if(mysqli_num_rows($res)>0){
-									$i=0;
-									while($row=$res->fetch_assoc()){
-										$a=$row["amount"];
-										$i=$i+$a;
-										$bid=$row['bid'];
-										$p=$row["pid"];
-										$_SESSION["amount"]=$i;
-										echo "<form action='Poojapay.php' method='post'>";
-									
-									echo "<tr><td><input type='hidden' value='$p' name='pid[]'></td><td><input type='hidden' value='$bid' name='bid[]'></td><td>" .$row["tname"]. "</td><td>". $row["dname"]."</td><td>". $row["name"]."</td><td>". $row["star"]."</td><td>". $row["date"]."</td><td>". $row["pname"]."</td><td><input type='text' value='$a' name='amount[]' readonly></td>";
-									echo "<td><div class='box-tools'>
-									<button type='button' class='btn btn-info btn-sm' name='delete' data-toggle='tooltip'
-									title='Remove' onclick=window.location.href='bookingdel.php?x=". $row["bid"]. "'>
-									<i class='fa fa-times'></i></button></div>
-									</td></tr>";
-								  
-									} 
-									
-									}
-									else
-									{
-										 $i=0; 
-									}
-							
-								
-							?>      
-               
-               
-               
-						
-                </tbody>
-				</table>
-				
-				<div>
-				<div class="form-group">
-				<div class="col-sm-6">
-				</div>
-		                   <label class="col-sm-2 control-label"> </label>
-				
-					    <div class="col-sm-4">
-					       <b>Total ₹ </b> <input type="label" name="txtamount" class="form-control-default" readonly value="<?php echo $i;?>">
-					    </div>
-					  </div>
-				</div>
-					 <div class="form-group">
-						<div class=" col-md-6" align="center">
-							<button type="submit" class="btn btn-info pull-right" onClick="Poojapay.php">Procced to Payment</button>	             
-						</div>
-						</div>
-					
-			   </div>
-		      </div>
-		     </div>
-			 </form>
+		 
+		 
+		 
+		
       
     </div>
     <!-- /.container -->

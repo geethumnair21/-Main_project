@@ -51,9 +51,8 @@ $usr=$_SESSION["username"];
           <ul class="nav navbar-nav">
             <li><a href="userHome.php">Home</a></li>
             <li><a href="PoojaBooking.php">Pooja Booking</a></li>
-			<li><a href="#">Vitrual Q</a></li>
-			<li><a href="#">Wedding Booking</a></li>
-			<li><a href="#">Donation</a></li>
+			<li><a href="weddingbooking.php">Wedding Booking</a></li>
+			<li><a href="Donation.php">Donation</a></li>
 			<li class="active"><a href="Feedback.php">Feedback<span class="sr-only">(current)</span></a></li>
           </ul>
           
@@ -121,10 +120,10 @@ $usr=$_SESSION["username"];
               
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="userProfile.php" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -187,7 +186,7 @@ $usr=$_SESSION["username"];
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Feedback</label>
 						<div class="col-sm-6">
-							<textarea class="form-control" name="txtmsg" rows="4" placeholder="Enter ..."></textarea>
+							<textarea class="form-control" name="txtmsg" rows="4" placeholder="Enter ..." required></textarea>
 						</div>
 						</div>
 						

@@ -50,10 +50,9 @@ session_start();
           <ul class="nav navbar-nav">
             <li><a href="userHome.php">Home<span class="sr-only">(current)</span></a></li>
             <li><a href="PoojaBooking.php">Pooja Booking</a></li>
-			<li><a href="#">Vitrual Q</a></li>
-			<li><a href="#">Wedding Booking</a></li>
-			<li><a href="#">Donation</a></li>
-			<li><a href="#">Feedback</a></li>
+			<li><a href="weddingbooking.php">Wedding Booking</a></li>
+			<li><a href="Donation.php">Donation</a></li>
+			<li><a href="Feedback.php">Feedback</a></li>
           </ul>
           
         </div>
@@ -123,7 +122,7 @@ session_start();
                     <a href="userProfile.php" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -156,7 +155,7 @@ session_start();
 			<div class="box-header with-border" align="center">
               <h3 class="box-title">My Profile</h3>
             </div>
-			<form action="signin.php" method="post" class="form-horizontal">
+			<form action="" method="post" class="form-horizontal">
 				 <div class="box-body">
 					<div class="form-group">
                     </div>

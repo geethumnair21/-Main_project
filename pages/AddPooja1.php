@@ -25,7 +25,7 @@
 				else{
 				$sql="insert into pooja(temple,deity,pname,amount,purpose,curdate)values('$temple','$deity','$pname','$amt','$purpose',NOW());";
 				mysqli_query($con,$sql);
-				echo $sql;
+				/* echo $sql; */
 				/* $_SESSION['username'] = $_POST['txtemail'];  */
 				header('location:AddPooja.php'); 
 				}

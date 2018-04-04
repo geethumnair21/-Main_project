@@ -65,6 +65,8 @@ session_start();
         for(var i = 0; i < categories.length; i++){
           select.options[i] = new Option(categories[i].val,categories[i].id);          
         }
+		select.options[i] = new Option("--Select--");
+		select.selectedIndex = i;
       }
       function updateSubCats(){
         var catSelect = this;
@@ -85,7 +87,7 @@ session_start();
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../../index2.html" class="navbar-brand"><b>NALAMBALAM</b></a>
+          <a href="" class="navbar-brand"><b>NALAMBALAM</b></a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -94,12 +96,11 @@ session_start();
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li class="active"><a href="#">Pooja Booking<span class="sr-only">(current)</span></a></li>
-			<li><a href="#">Vitrual Q</a></li>
-			<li><a href="#">Wedding Booking</a></li>
-			<li><a href="#">Donation</a></li>
-			<li><a href="#">Feedback</a></li>
+            <li><a href="userHome.php">Home</a></li>
+            <li class="active"><a href="PoojaBooking.php">Pooja Booking<span class="sr-only">(current)</span></a></li>
+			<li><a href="weddingbooking.php">Wedding Booking</a></li>
+			<li><a href="Donation.php">Donation</a></li>
+			<li><a href="Feedback.php">Feedback</a></li>
           </ul>
           <!-- <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -171,10 +172,10 @@ session_start();
               
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="userProfile.php" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>

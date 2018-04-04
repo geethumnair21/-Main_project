@@ -7,12 +7,12 @@
 				$date=$_POST["date"];
 				$pid=$_SESSION["pid"];
 				$uid=$_SESSION["uid"];
-				echo $pid;
-				echo $uid;
+				/* echo $pid;
+				echo $uid; */
 					
 				
 				
-				$sql="insert into p_booking values('$uid','$name','$star','$date','$pid');";
+				$sql="insert into p_booking(`uid`, `name`, `star`, `date`, `pid`) values('$uid','$name','$star','$date','$pid');";
 				mysqli_query($con,$sql);
 				header('location:DevoteePD.php'); 
 	?>		

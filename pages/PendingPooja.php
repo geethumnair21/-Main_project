@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!empty($_GET["x"]))
+{
+echo "<script>alert('Pooja Completed Succesfully');</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +124,7 @@ session_start();
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -198,31 +202,10 @@ session_start();
             <li><a href="AddPooja.php">Add Pooja</a></li>
             <li><a href="AdminPoojaList.php">View Pooja List</a></li>
 			<li class="active"><a href="PendingPooja.php">Pending Poojas</a></li>
-			<li><a href="#">Completed Poojas</a></li>
+			<li><a href="completedPooja.php">Completed Poojas</a></li>
           </ul>
         </li>
-        <!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Festivals</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Add Festivals</a></li>
-            <li><a href="#">View Festivals</a></li>
-          </ul>
-        </li>-->
-		 <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Virtual Q</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">View Booked Q</a></li>
-            <!-- <li><a href="#">Link in level 2</a></li> -->
-          </ul>
-        </li>
+        
 		<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Wedding</span>
             <span class="pull-right-container">
@@ -230,7 +213,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Booked Wedding</a></li>
+           <li><a href="WeddingList.php">View Booked Wedding</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -241,7 +224,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Donation List</a></li>
+            <li><a href="ViewDonation.php">View Donation List</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -252,7 +235,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Feedback</a></li>
+            <li><a href="ViewFeedback.php">View User Feedback</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -263,7 +246,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Profile</a></li>
+           <li><a href="ViewUser.php">View User Profile</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -288,19 +271,25 @@ session_start();
     </section>
 	<section class="content" background-color="red">
 
-      <div class="row">
+    
+       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+             <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select did from donation;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
-              <p>New Orders</p>
+              <p>Donation</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -308,14 +297,19 @@ session_start();
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select pname from pooja;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>Poojas/Vazhipad</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-book"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -323,17 +317,24 @@ session_start();
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where usertype=1;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            
           </div>
         </div>
-		</div> 
+      
+      </div>
 		
 		<div class="row">
         <div class="col-xs-12">
@@ -363,10 +364,10 @@ session_start();
 				
 								$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 								
-								$sel="SELECT tmp.tname,dt.dname,p.name,p.uid,p.star,p.date,pj.pname,pj.amount FROM 
+								$sel="SELECT tmp.tname,dt.dname,p.name,p.uid,p.bid,p.star,p.date,p.status,pj.pname,pj.amount FROM 
 									pooja pj left outer join  temple tmp on pj.temple=tmp.tid 
 									left outer join deity dt on pj.deity=dt.did
-                                   left outer join p_booking p on pj.pid=p.pid where uid=p.uid;";
+                                   left outer join p_booking p on pj.pid=p.pid where uid=p.uid and p.status=0;";
 								
 									
 								$res=mysqli_query($con,$sel);
@@ -375,9 +376,10 @@ session_start();
 									while($row=$res->fetch_assoc()){
 									
 									echo "<tr><td>". $row["uid"]."</td><td>" .$row["tname"]. "</td><td>". $row["dname"]."</td><td>". $row["name"]."</td><td>". $row["star"]."</td><td>". $row["date"]."</td><td>". $row["pname"]."</td><td>". $row["amount"]."</td>";
+									$x=$row["bid"];
 									echo "<td><div class='box-tools'>
 									<button type='button' class='btn btn-info btn-sm' name='delete' data-toggle='tooltip'
-									title='Remove' onclick=window.location.href=''>
+									title='Check' onclick=window.location.href='completed.php?bid=".$row['bid']."'>
 									<i class='far fa-check-square'></i></button></div>
 									</td></tr>";
 								  
@@ -414,16 +416,7 @@ session_start();
     </section>
 
   </div>
-  <!-- /.content-wrapper -->
-  <!-- <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer> -->
-
-  <!-- Control Sidebar -->
+  
   
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed

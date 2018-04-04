@@ -63,6 +63,8 @@
         for(var i = 0; i < categories.length; i++){
           select.options[i] = new Option(categories[i].val,categories[i].id);          
         }
+		select.options[i] = new Option("--Select--");
+		select.selectedIndex = i;
       }
       function updateSubCats(){
         var catSelect = this;

@@ -120,7 +120,7 @@ session_start();
               
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -200,32 +200,11 @@ session_start();
           <ul class="treeview-menu">
             <li><a href="AddPooja.php">Add Pooja</a></li>
             <li><a href="AdminPoojaList.php">View Pooja List</a></li>
-			<li><a href="#">Pending Poojas</a></li>
-			<li><a href="#">Completed Poojas</a></li>
+			<li><a href="PendingPooja.php">Pending Poojas</a></li>
+			<li><a href="completedPooja.php">Completed Poojas</a></li>
           </ul>
         </li>
-        <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Festivals</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Add Festivals</a></li>
-            <li><a href="#">View Festivals</a></li>
-          </ul>
-        </li> -->
-		 <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Virtual Q</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">View Booked Q</a></li>
-            <!-- <li><a href="#">Link in level 2</a></li> -->
-          </ul>
-        </li>
+
 		<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Wedding</span>
             <span class="pull-right-container">
@@ -233,7 +212,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Booked Wedding</a></li>
+             <li><a href="WeddingList.php">View Booked Wedding</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -244,7 +223,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Donation List</a></li>
+            <li><a href="ViewDonation.php">View Donation List</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -255,7 +234,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Feedback</a></li>
+            <li><a href="ViewFeedback.php">View User Feedback</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -266,7 +245,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Profile</a></li>
+            <li><a href="ViewUser.php">View User Profile</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -294,19 +273,25 @@ session_start();
     <!-- Main content -->
     <section class="content" background-color="red">
 
+    
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+             <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select did from donation;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
-              <p>New Orders</p>
+              <p>Donation</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -314,14 +299,19 @@ session_start();
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select pname from pooja;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>Poojas/Vazhipad</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-book"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -329,17 +319,25 @@ session_start();
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where usertype=1;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            
           </div>
         </div>
-		</div> 
+      
+      </div>
+
 		
 		<div class="col-xs-12">
 		<div class="box">
@@ -378,28 +376,28 @@ session_start();
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Festival</label>
                   <div class="col-sm-6">
-                   <input type="text" name="txtfest" class="form-control" placeholder="Enter ...">
+                   <input type="text" name="txtfest" class="form-control" placeholder="Enter ..." required>
                   </div>
                 </div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Date</label>
                   <div class="col-sm-2">
-                   <input type="date" name="date" class="form-control">
+                   <input type="date" name="date" class="form-control" required>
                   </div>
 					<label class="col-sm-1 control-label">Time</label>
 				  <div class="col-sm-3">
-                   <input type="text" name="txttime" class="form-control" placeholder="Enter ...">
+                   <input type="text" name="txttime" class="form-control" placeholder="Enter ..." required>
                   </div>
                 </div>
 				 <div class="form-group">
 					<label class="col-sm-3 control-label">Event</label>
 						<div class="col-sm-6">
-                   <input type="text" name="txtevent" class="form-control" placeholder="Enter ...">
+                   <input type="text" name="txtevent" class="form-control" placeholder="Enter ..." required>
 						</div>
 					</div>
 				<div class="col-md-12">
 				<div class="form-group">
-					<button type="submit" class="btn btn-info">Cancel</button>
+					<button type="reset" class="btn btn-info">Cancel</button>
 					
 					<button type="submit" class="btn btn-info pull-right">ADD</button>
 				</div>

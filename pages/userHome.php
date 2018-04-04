@@ -50,10 +50,9 @@ session_start();
           <ul class="nav navbar-nav">
             <li class="active"><a href="userHome.php">Home<span class="sr-only">(current)</span></a></li>
             <li><a href="PoojaBooking.php">Pooja Booking</a></li>
-			<li><a href="#">Vitrual Q</a></li>
-			<li><a href="#">Wedding Booking</a></li>
-			<li><a href="#">Donation</a></li>
-			<li><a href="#">Feedback</a></li>
+			<li><a href="weddingbooking.php">Wedding Booking</a></li>
+			<li><a href="Donation.php">Donation</a></li>
+			<li><a href="Feedback.php">Feedback</a></li>
           </ul>
           
         </div>
@@ -137,7 +136,7 @@ session_start();
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
-    <div class="container">
+   
       <!-- Content Header (Page header) -->
       <section class="content-header">
        <!--  <h1>
@@ -151,7 +150,50 @@ session_start();
         </ol>
       </section>
 	  
-    </div>
+	  <div>
+          
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+				  <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="dist/img/s.jpg" alt="First slide">
+
+                  </div>
+                  <div class="item">
+                    <img src="dist/img/koodappulam.jpg" alt="Second slide">
+
+                    
+                  </div>
+                  <div class="item">
+                    <img src="dist/img/last.jpg" alt="Third slide">
+
+                  </div>
+				  <div class="item">
+                    <img src="dist/img/Sria.jpg" alt="Fourth slide">
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                  <span class="fa fa-angle-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                  <span class="fa fa-angle-right"></span>
+                </a>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          
+          <!-- /.box -->
+        </div>
+	  
+   
     <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->

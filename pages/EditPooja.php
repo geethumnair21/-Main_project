@@ -78,6 +78,8 @@ $d=mysqli_fetch_assoc($ab);
         for(var i = 0; i < categories.length; i++){
           select.options[i] = new Option(categories[i].val,categories[i].id);          
         }
+		select.options[i] = new Option("--Select--");
+		select.selectedIndex = i;
       }
       function updateSubCats(){
         var catSelect = this;
@@ -128,18 +130,58 @@ $d=mysqli_fetch_assoc($ab);
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Admin</span>
+              <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='user-image' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='user-image' alt='User Image'>";
+				}	
+			   
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo "<span class='hidden-xs'>".$row['name']."</span>";
+			    ?>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                 <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				
+			    ?>
 
                 <p>
-                  Admin 
+                  <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo $row['name'];
+			    ?>  
                   
                 </p>
               </li>
@@ -147,11 +189,8 @@ $d=mysqli_fetch_assoc($ab);
              
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -173,10 +212,32 @@ $d=mysqli_fetch_assoc($ab);
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				
+			    ?>
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p><?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo $row['name'];
+			    ?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -219,32 +280,11 @@ $d=mysqli_fetch_assoc($ab);
           <ul class="treeview-menu">
             <li class="active"><a href="AddPooja.php">Add Pooja</a></li>
             <li><a href="AdminPoojaList.php">View Pooja List</a></li>
-			<li><a href="#">Pending Poojas</a></li>
-			<li><a href="#">Completed Poojas</a></li>
+			<li><a href="PendingPooja.php">Pending Poojas</a></li>
+			<li><a href="completedPooja.php">Completed Poojas</a></li>
           </ul>
         </li>
-        <!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Festivals</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Add Festivals</a></li>
-            <li><a href="#">View Festivals</a></li>
-          </ul>
-        </li>-->
-		 <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Virtual Q</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">View Booked Q</a></li>
-            <!-- <li><a href="#">Link in level 2</a></li> -->
-          </ul>
-        </li>
+       
 		<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Wedding</span>
             <span class="pull-right-container">
@@ -252,7 +292,7 @@ $d=mysqli_fetch_assoc($ab);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Booked Wedding</a></li>
+            <li><a href="WeddingList.php">View Booked Wedding</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -263,7 +303,7 @@ $d=mysqli_fetch_assoc($ab);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Donation List</a></li>
+            <li><a href="ViewDonation.php">View Donation List</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -274,7 +314,7 @@ $d=mysqli_fetch_assoc($ab);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Feedback</a></li>
+            <li><a href="ViewFeedback.php">View User Feedback</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -285,7 +325,7 @@ $d=mysqli_fetch_assoc($ab);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Profile</a></li>
+            <li><a href="ViewUser.php">View User Profile</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -313,19 +353,24 @@ $d=mysqli_fetch_assoc($ab);
     <!-- Main content -->
     <section class="content" background-color="red">
 
-      <div class="row">
+       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+             <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select did from donation;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
-              <p>New Orders</p>
+              <p>Donation</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -333,14 +378,19 @@ $d=mysqli_fetch_assoc($ab);
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select pname from pooja;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>Poojas/Vazhipad</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-book"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -348,17 +398,24 @@ $d=mysqli_fetch_assoc($ab);
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where usertype=1;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            
           </div>
         </div>
-		</div> 
+      
+      </div>
 		
 		<div class="col-xs-12">
 		<div class="box">
@@ -414,18 +471,18 @@ $d=mysqli_fetch_assoc($ab);
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Pooja Name</label>
                   <div class="col-sm-3">
-                   <input type="text" name="txtpooja" class="form-control" placeholder="Enter ..." value="<?php echo $col['pname']; ?>">
+              <input type="text" name="txtpooja" class="form-control" required placeholder="Enter ..." value="<?php echo $col['pname']; ?>">
                   </div>
 					<label class="col-sm-1 control-label">Amount</label>
 				<div class="col-sm-2">
-                   <input type="text" name="txtamount" class="form-control" placeholder="Enter ..." value="<?php echo $col['amount']; ?>">
+           <input type="number" name="txtamount" required class="form-control" placeholder="Enter ..." value="<?php echo $col['amount']; ?>">
                  </div>
                 </div>
 				
 				<div class="form-group">
                   <label class="col-sm-3 control-label">Purpose</label>
 				  <div class="col-sm-6">
-                  <textarea class="form-control" name="txtpurpose" rows="3" placeholder="Enter ..." ><?php echo $col['purpose']; ?></textarea>
+                  <textarea class="form-control" name="txtpurpose" rows="3" placeholder="Enter ..." required><?php echo $col['purpose']; ?></textarea>
 				  </div>
                 </div>
 				

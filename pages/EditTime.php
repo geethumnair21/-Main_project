@@ -59,143 +59,76 @@ $col=mysqli_fetch_assoc($res);
         <span class="sr-only">Toggle navigation</span>
       </a>
 	 
-	<!-- <h2 class="nav navbar-nav" ><span class="btn bg-navy1 btn-flat margins">Academic Year:2017-2018</span></h2> -->
 	  
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
 	 
         <ul class="nav navbar-nav">
-        <!--   
-          <li class="dropdown messages-menu">
-            
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                       
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                 
-                </ul>
-                
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li> -->
-          <!-- /.messages-menu -->
-
-          
-         <!--  <li class="dropdown notifications-menu">
-           
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-               
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li> -->
-          <!-- Tasks Menu -->
-         <!--  <li class="dropdown tasks-menu">
-            
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li> -->
+        
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Admin</span>
+              <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='user-image' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='user-image' alt='User Image'>";
+				}	
+			   
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo "<span class='hidden-xs'>".$row['name']."</span>";
+			    ?>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                 <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				
+			    ?>
 
                 <p>
-                  Admin 
+                 <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo $row['name'];
+			    ?> 
                   
                 </p>
               </li>
-              <!-- Menu Body -->
-              <!-- <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-               
-              </li> -->
+              
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -217,10 +150,32 @@ $col=mysqli_fetch_assoc($res);
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+         <?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select gender from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				if($row['gender']=='Female')
+				{
+					echo "<img src='dist/img/FEMALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				else
+				{
+					echo "<img src='dist/img/MALE.jpg' class='img-circle' alt='User Image'>";
+				}
+				
+			    ?>
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p><?php
+				$id=$_SESSION["username"];
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where email='$id';";
+				$res=mysqli_query($con,$sq);
+				$row=mysqli_fetch_assoc($res);
+				echo $row['name'];
+			    ?></p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -263,32 +218,11 @@ $col=mysqli_fetch_assoc($res);
           <ul class="treeview-menu">
             <li><a href="AddPooja.php">Add Pooja</a></li>
             <li><a href="AdminPoojaList.php">View Pooja List</a></li>
-			<li><a href="#">Pending Poojas</a></li>
-			<li><a href="#">Completed Poojas</a></li>
+			<li><a href="PendingPooja.php">Pending Poojas</a></li>
+			<li><a href="completedPooja.php">Completed Poojas</a></li>
           </ul>
         </li>
-        <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Festivals</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Add Festivals</a></li>
-            <li><a href="#">View Festivals</a></li>
-          </ul>
-        </li> -->
-		 <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Virtual Q</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">View Booked Q</a></li>
-            <!-- <li><a href="#">Link in level 2</a></li> -->
-          </ul>
-        </li>
+        
 		<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Wedding</span>
             <span class="pull-right-container">
@@ -296,7 +230,7 @@ $col=mysqli_fetch_assoc($res);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Booked Wedding</a></li>
+             <li><a href="WeddingList.php">View Booked Wedding</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -307,7 +241,7 @@ $col=mysqli_fetch_assoc($res);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View Donation List</a></li>
+            <li><a href="ViewDonation.php">View Donation List</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -318,7 +252,7 @@ $col=mysqli_fetch_assoc($res);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Feedback</a></li>
+            <li><a href="ViewFeedback.php">View User Feedback</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -329,7 +263,7 @@ $col=mysqli_fetch_assoc($res);
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">View User Profile</a></li>
+           <li><a href="ViewUser.php">View User Profile</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -362,14 +296,19 @@ $col=mysqli_fetch_assoc($res);
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+             <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select did from donation;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
-              <p>New Orders</p>
+              <p>Donation</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -377,14 +316,19 @@ $col=mysqli_fetch_assoc($res);
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select pname from pooja;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>Poojas/Vazhipad</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-book"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -392,17 +336,24 @@ $col=mysqli_fetch_assoc($res);
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
+              <h1><?php
+				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+				$sq="select name from registration where usertype=1;";
+				$res=mysqli_query($con,$sq);
+				$rowCount = mysqli_num_rows($res);
+				echo "<span class='info-box-number'>".$rowCount."<small></small></span>";
+			   ?></h1>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="fa fa-fw fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            
           </div>
         </div>
-		</div> 
+      
+      </div>
 		
 		<div class="col-xs-12">
 		<div class="box">
@@ -441,23 +392,23 @@ $col=mysqli_fetch_assoc($res);
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Festival</label>
                   <div class="col-sm-6">
-                   <input type="text" name="txtfest" class="form-control" placeholder="Enter ..." value="<?php echo $col['festival']; ?>">
+             <input type="text" name="txtfest" class="form-control" placeholder="Enter ..." required value="<?php echo $col['festival']; ?>">
                   </div>
                 </div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Date</label>
                   <div class="col-sm-2">
-                   <input type="date" name="date" class="form-control" value="<?php echo $col['date']; ?>">
+                   <input type="date" name="date" class="form-control" required value="<?php echo $col['date']; ?>">
                   </div>
 					<label class="col-sm-1 control-label">Time</label>
 				  <div class="col-sm-3">
-                   <input type="text" name="txttime" class="form-control" placeholder="Enter ..." value="<?php echo $col['time']; ?>">
+               <input type="text" name="txttime" class="form-control" required placeholder="Enter ..." value="<?php echo $col['time']; ?>">
                   </div>
                 </div>
 				 <div class="form-group">
 					<label class="col-sm-3 control-label">Event</label>
 						<div class="col-sm-6">
-                   <input type="text" name="txtevent" class="form-control" placeholder="Enter ..." value="<?php echo $col['event']; ?>">
+              <input type="text" name="txtevent" class="form-control" required placeholder="Enter ..." value="<?php echo $col['event']; ?>">
 						</div>
 					</div>
 				<div class="col-md-12">

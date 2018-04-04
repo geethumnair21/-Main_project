@@ -2,116 +2,66 @@
 session_start();
 ?>
 
-<?php
- 	$db=mysqli_connect("localhost","geethu","geethu@21","temple");
-						
-  $query = "SELECT tid,tname FROM temple";
-  $result = $db->query($query);
-
-  while($row = $result->fetch_assoc()){
-    $categories[] = array("id" => $row['tid'], "val" => $row['tname']);
-  }
-
-  $query = "SELECT did, tid, dname FROM deity";
-  $result = $db->query($query);
-
-  while($row = $result->fetch_assoc()){
-    $subcats[$row['tid']][] = array("id" => $row['did'], "val" => $row['dname']);
-  }
-
-  $jsonCats = json_encode($categories);
-  $jsonSubCats = json_encode($subcats);
-
-
-?>
-
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Temple Management System</title>
-  <link rel="shortcut icon" href="dist/img/schools.ico" type="image/png">
+  <title>Temple Management Syatem</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
-
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FF7593B5-AB9D-404E-AC20-195932D4F7C8/main.js" charset="UTF-8"></script></head>
-<script type='text/javascript'>
-      <?php
-        echo "var categories = $jsonCats; \n";
-        echo "var subcats = $jsonSubCats; \n";
-      ?>
-      function loadCategories(){
-        var select = document.getElementById("categoriesSelect");
-        select.onchange = updateSubCats;
-        for(var i = 0; i < categories.length; i++){
-          select.options[i] = new Option(categories[i].val,categories[i].id);          
-        }
-		select.options[i] = new Option("--Select--");
-		select.selectedIndex = i;
-		
-      }
-      function updateSubCats(){
-        var catSelect = this;
-        var catid = this.value;
-        var subcatSelect = document.getElementById("subcatsSelect");
-        subcatSelect.options.length = 0; //delete all options if any present
-        for(var i = 0; i < subcats[catid].length; i++){
-          subcatSelect.options[i] = new Option(subcats[catid][i].val,subcats[catid][i].id);
-        }
-		document.getElementById("b1").disabled=false;
-      }
-    </script>
-
-<body onload='loadCategories()' class="hold-transition skin-blue sidebar-mini">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <!-- Main Header -->
   <header class="main-header">
-
     <!-- Logo -->
-    <a href="starter.html" class="logo">
+   <a href="starter.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>TMS</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><small>Temple Management System</small></span>
     </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
-	 
-	<!-- <h2 class="nav navbar-nav" ><span class="btn bg-navy1 btn-flat margins">Academic Year:2017-2018</span></h2> -->
-	  
-      <!-- Navbar Right Menu -->
+
       <div class="navbar-custom-menu">
-	 
         <ul class="nav navbar-nav">
-          <!-- User Account Menu -->
+          
           <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-             <?php
+               <?php
 				$id=$_SESSION["username"];
 				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 				$sq="select gender from registration where email='$id';";
@@ -135,9 +85,9 @@ session_start();
 			    ?>
             </a>
             <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
+              <!-- User image -->
               <li class="user-header">
-                 <?php
+                <?php
 				$id=$_SESSION["username"];
 				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 				$sq="select gender from registration where email='$id';";
@@ -155,7 +105,7 @@ session_start();
 			    ?>
 
                 <p>
-                  <?php
+                 <?php
 				$id=$_SESSION["username"];
 				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 				$sq="select name from registration where email='$id';";
@@ -163,7 +113,6 @@ session_start();
 				$row=mysqli_fetch_assoc($res);
 				echo $row['name'];
 			    ?> 
-                  
                 </p>
               </li>
               <!-- Menu Body -->
@@ -171,7 +120,7 @@ session_start();
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -186,14 +135,12 @@ session_start();
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-      <!-- Sidebar user panel (optional) -->
+      <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <?php
+           <?php
 				$id=$_SESSION["username"];
 				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 				$sq="select gender from registration where email='$id';";
@@ -212,22 +159,20 @@ session_start();
         </div>
         <div class="pull-left info">
           <p>
-		  <?php
+		   <?php
 				$id=$_SESSION["username"];
 				$con=mysqli_connect("localhost","geethu","geethu@21","temple");
 				$sq="select name from registration where email='$id';";
 				$res=mysqli_query($con,$sq);
 				$row=mysqli_fetch_assoc($res);
 				echo $row['name'];
-			    ?>
+			    ?> 
 		  </p>
-          <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-
      
-      <!-- Sidebar Menu -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
@@ -250,24 +195,13 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="AddPooja.php">Add Pooja</a></li>
+            <li><a href="AddPooja.php">Add Pooja</a></li>
             <li><a href="AdminPoojaList.php">View Pooja List</a></li>
 			<li><a href="PendingPooja.php">Pending Poojas</a></li>
-			<li><a href="completedPooja.php">Completed Poojas</a></li>
+			<li class="active"><a href="completedPooja.php">Completed Poojas</a></li>
           </ul>
         </li>
-        <!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Festivals</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Add Festivals</a></li>
-            <li><a href="#">View Festivals</a></li>
-          </ul>
-        </li>-->
-		
+       
 		<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Wedding</span>
             <span class="pull-right-container">
@@ -297,7 +231,7 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-           <li><a href="ViewFeedback.php">View User Feedback</a></li>
+             <li><a href="ViewFeedback.php">View User Feedback</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
@@ -308,12 +242,11 @@ session_start();
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="ViewUser.php">View User Profile</a></li>
+             <li><a href="ViewUser.php">View User Profile</a></li>
             <!-- <li><a href="#">Link in level 2</a></li> -->
           </ul>
         </li>
       </ul>
-      <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -326,15 +259,13 @@ session_start();
         Admin
         <small>Control panel</small>
       </h1>
-      <ol class="breadcrumb">
+     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="fa fa-dashboard">Pooja Details</li>
-		<li class="active">Add Pooja</li>
+		<li class="active">Pending Poojas</li>
       </ol>
     </section>
-
-    <!-- Main content -->
-    <section class="content" background-color="red">
+	<section class="content" background-color="red">
 
        <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -400,88 +331,127 @@ session_start();
       
       </div>
 		
-		<div class="col-xs-12">
-		<div class="box">
-		  <div class="box-header">
-				<div class="nav-tabs-custom">
-					<h2 align="center">Add Pooja</h2>
-				</div>
+		<div class="row">
+        <div class="col-xs-12">
+          
+          <div class="box">
+            <div class="box-header">
+              <h2 align="center">Completed Pooja List</h3>
+            </div>
 					
-			<div class="tab-content">
-              <div class="tab-pane active">
-               <form action="AddPooja1.php" method="post" class="form-horizontal">
-				  <div class="form-group">
-                  <label class="col-sm-3 control-label">Temple</label>
-					 <div class="col-sm-6">		
-                          <select id='categoriesSelect' name="temple" class="form-control">
-						  
-						  </select>
-					</div>
-                  </div>
-				  <div class="form-group">
-					<label class="col-sm-3 control-label">Deity</label>
-						 <div class="col-sm-6">
-                   <select id='subcatsSelect' name="deity" class="form-control">
-				   
-				   </select>
-                  </div>
-					</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Pooja Name</label>
-                  <div class="col-sm-3">
-                   <input type="text" name="txtpooja" class="form-control" placeholder="Enter ..." required>
-                  </div>
-					<label class="col-sm-1 control-label">Amount</label>
-				<div class="col-sm-2">
-                   <input type="number" name="txtamount" class="form-control" placeholder="Enter ..." required>
-                 </div>
-                </div>
+			<div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>uid</th>
+                  <th>Temple</th>
+                  <th>Deity</th>
+                  <th>Name</th>
+                  <th>Star</th>
+				  <th>Date</th>
+				  <th>Pooja</th>
+				  <th>Amount</th>
+				  
+                </tr>
+                </thead>
+				<tbody>
+				   <?php
 				
-				<div class="form-group">
-                  <label class="col-sm-3 control-label">Purpose</label>
-				  <div class="col-sm-6">
-                  <textarea class="form-control" name="txtpurpose" rows="3" placeholder="Enter ..." required></textarea>
-				  </div>
-                </div>
-				
-				<div class="col-md-12">
-				<div class="form-group">
-					<button type="submit" class="btn btn-info">Cancel</button>
-					
-					<button type="submit" id="b1" class="btn btn-info pull-right" disabled>ADD</button>
-				</div>
-				</div>
-				
-				  </div>
-				   </div>
-				</form>
-				</div>
-		</div>
-                  </div>
+								$con=mysqli_connect("localhost","geethu","geethu@21","temple");
+								
+								$sel="SELECT tmp.tname,dt.dname,p.name,p.uid,p.bid,p.star,p.date,p.status,pj.pname,pj.amount FROM 
+									pooja pj left outer join  temple tmp on pj.temple=tmp.tid 
+									left outer join deity dt on pj.deity=dt.did
+                                   left outer join p_booking p on pj.pid=p.pid where uid=p.uid and p.status=1;";
+								
+									
+								$res=mysqli_query($con,$sel);
+								
+								if(mysqli_num_rows($res)>0){
+									while($row=$res->fetch_assoc()){
+									
+									echo "<tr><td>". $row["uid"]."</td><td>" .$row["tname"]. "</td><td>". $row["dname"]."</td><td>". $row["name"]."</td><td>". $row["star"]."</td><td>". $row["date"]."</td><td>". $row["pname"]."</td><td>". $row["amount"]."</td></tr>";
+								  
+									} 
+									
+									}
+							
+								
+							?>      
+				 
+				 
+               
+                
+                  
+                </tbody>
+				<tfoot>
+                <tr>
+                  <th>uid</th>
+                  <th>Temple</th>
+                  <th>Deity</th>
+                  <th>Name</th>
+                  <th>Star</th>
+				  <th>Date</th>
+				  <th>Pooja</th>
+				  <th>Amount</th>
+				  
+                </tr>
+                </tfoot>
+					</table>
 				</div>
 			</div>
 		</div>
 		</div>
 	
     </section>
-    <!-- /.content -->
+
   </div>
+  <!-- /.content-wrapper -->
+  <!-- <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer> -->
+
+  <!-- Control Sidebar -->
   
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 </html>
